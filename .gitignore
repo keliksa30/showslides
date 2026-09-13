@@ -1,0 +1,17 @@
+# Scratch & Research Data
+scratch/
+screenshots/
+*.mp4
+*.mov
+*.avi
+
+# Temporary JSON dumps
+milanote_*.json
+saasor_script_*.json
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/

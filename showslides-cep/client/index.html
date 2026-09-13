@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowSlides 3D Carousel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <div class="brand">
+                <div class="logo-box">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="2 17 12 22 22 17" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="2 12 12 17 22 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="brand-title">ShowSlides <span>3D</span></h1>
+                    <p class="brand-tag">Carousel Studio v3.0</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator ready" id="statusDot"></span>
+                <span class="status-label" id="statusText">Ready</span>
+            </div>
+        </header>
+
+        <!-- 1. SELECT SHAPE -->
+        <section class="section">
+            <label class="section-label">
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="9" x2="21" y2="9" stroke="currentColor" stroke-width="2"/></svg>
+                Select Shape
+            </label>
+            <div class="mode-grid">
+                <!-- Shape 1: Circular -->
+                <div class="mode-card active" data-shape="1">
+                    <div class="mode-icon-box">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="3 2"/>
+                            <circle cx="12" cy="4" r="2" fill="currentColor"/>
+                            <circle cx="20" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="20" r="2" fill="currentColor"/>
+                            <circle cx="4" cy="12" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="mode-name">Circular</span>
+                    <span class="mode-desc">360° Ring</span>
+                </div>
+
+                <!-- Shape 2: Globe View -->
+                <div class="mode-card" data-shape="2">
+                    <div class="mode-icon-box">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3.5" fill="currentColor"/>
+                            <path d="M3 15c3 4 14 4 18-1s-3-8-9-8-11 4-9 9z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                        </svg>
+                    </div>
+                    <span class="mode-name">Globe View</span>
+                    <span class="mode-desc">3D Spherical Orbit</span>
+                </div>
+
+                <!-- Shape 3: Card View -->
+                <div class="mode-card" data-shape="3">
+                    <div class="mode-icon-box">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                        </svg>
+                    </div>
+                    <span class="mode-name">Card View</span>
+                    <span class="mode-desc">Spatial HUD Arc</span>
+                </div>
+
+                <!-- Shape 4: Linear -->
+                <div class="mode-card" data-shape="4">
+                    <div class="mode-icon-box">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path d="M4 19h16M4 5h16" stroke="currentColor" stroke-width="1.8"/>
+                            <rect x="8" y="7" width="8" height="10" rx="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="mode-name">Linear</span>
+                    <span class="mode-desc">Coverflow & Wave</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SELECT STYLE DROPDOWN -->
+        <section class="section">
+            <label class="section-label">
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                Select Style
+            </label>
+            <div class="style-select-box">
+                <select id="selectStyle" class="styled-select style-main-select">
+                    <!-- Populated dynamically via JS -->
+                </select>
+                <div class="style-badge" id="styleBadge">5 Styles Available</div>
+            </div>
+        </section>
+
+        <!-- 3. CONTROLS & PHYSICS -->
+        <section class="section params-section">
+            <label class="section-label">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                Controls & Physics
+            </label>
+
+            <!-- Radius -->
+            <div class="control-row">
+                <div class="control-info">
+                    <span class="control-title">Radius / Distance</span>
+                    <span class="control-value" id="valRadius">750 px</span>
+                </div>
+                <input type="range" id="sliderRadius" min="150" max="2500" value="750" class="styled-slider">
+            </div>
+
+            <!-- Depth Angle / Tilt X -->
+            <div class="control-row">
+                <div class="control-info">
+                    <span class="control-title">Depth Angle (Pitch)</span>
+                    <span class="control-value" id="valTiltX">0 deg</span>
+                </div>
+                <input type="range" id="sliderTiltX" min="-90" max="90" value="0" class="styled-slider">
+            </div>
+
+            <!-- Tilt Z -->
+            <div class="control-row">
+                <div class="control-info">
+                    <span class="control-title">Tilt Z (Roll)</span>
+                    <span class="control-value" id="valTiltZ">0 deg</span>
+                </div>
+                <input type="range" id="sliderTiltZ" min="-90" max="90" value="0" class="styled-slider">
+            </div>
+
+            <!-- Global Scale % -->
+            <div class="control-row">
+                <div class="control-info">
+                    <span class="control-title">Global Scale %</span>
+                    <span class="control-value" id="valScale">55 %</span>
+                </div>
+                <input type="range" id="sliderScale" min="10" max="150" value="55" class="styled-slider">
+            </div>
+
+            <!-- Toggles -->
+            <div class="toggle-grid">
+                <label class="toggle-item">
+                    <input type="checkbox" id="checkDepthFade" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-label">Depth Fade</span>
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="checkDepthScale" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-label">Depth Scale</span>
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="checkAutoSpin">
+                    <span class="toggle-box"></span>
+                    <span class="toggle-label">Auto Spin</span>
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="checkAddCamera" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-label">Add 3D Camera</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- 4. CTA ACTIONS -->
+        <div class="action-footer">
+            <button class="btn btn-primary" id="btnBuild">
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="2 17 12 22 22 17" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="2 12 12 17 22 12" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                <span>+ CREATE CAROUSEL</span>
+            </button>
+
+            <div class="secondary-actions">
+                <button class="btn btn-danger" id="btnDelete" title="Delete Controller Null and clear expressions">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/></svg>
+                    ✕ Delete Rig
+                </button>
+                <button class="btn btn-secondary" id="btnDetach" title="Remove expressions from selected layers">
+                    Detach Expr
+                </button>
+                <button class="btn btn-secondary" id="btnRefresh" title="Check active layers">
+                    Sync Sel
+                </button>
+            </div>
+        </div>
+
+        <!-- HELPER STATUS -->
+        <div class="helper-bar" id="helperBar">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"/></svg>
+            <span id="helperMsg">Pilih 2+ layer di timeline, pilih Shape & Style, lalu klik + CREATE CAROUSEL.</span>
+        </div>
+
+    </div>
+
+    <script src="CSInterface.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
