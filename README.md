@@ -19,10 +19,14 @@
 <a name="english"></a>
 ## 🇬🇧 English Documentation
 
-### 📸 User Interface
+### 📸 Screenshots & Workflow Preview
 
 <p align="center">
-  <img src="assets/showslides_ui.jpg" alt="ShowSlides UI Panel" width="100%">
+  <img src="assets/showslides_workflow.png" alt="ShowSlides After Effects Workflow" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/showslides_panel.png" alt="ShowSlides Panel UI" width="60%">
 </p>
 
 ShowSlides is crafted with a lightweight, responsive, and flat modern dark UI. It operates instantaneously without bulky dependencies.
@@ -108,7 +112,15 @@ Every rig is governed by a single 3D Null Layer equipped with non-destructive Ef
 <a name="bahasa-indonesia"></a>
 ## 🇮🇩 Dokumentasi Bahasa Indonesia
 
-### 📸 Antarmuka Panel UI
+### 📸 Tampilan Screenshot & Workflow
+
+<p align="center">
+  <img src="assets/showslides_workflow.png" alt="ShowSlides After Effects Workflow" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/showslides_panel.png" alt="ShowSlides Panel UI" width="60%">
+</p>
 
 ShowSlides dirancang dengan antarmuka modern yang cepat, responsif, dan ringan tanpa dependensi berat.
 
